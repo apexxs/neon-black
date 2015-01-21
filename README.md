@@ -1,9 +1,17 @@
 # Overall build instructions 
-(assuming Maven 3+ is configured on the system)
+(assuming Java 7, Maven 3+ is configured on the system)
 
 ## Solr index configuration (prerequisite)
 
 [See the core README](./neon-black-core/README.md)
+
+## OpenSextant Xponents
+
+Build Xponents from GitHub source (prerequisite)
+
+1. `git clone https://github.com/OpenSextant/Xponents.git`
+2. `cd Xponents`
+3. `mvn -DskipTests install`
 
 ## neon-black-core
 
