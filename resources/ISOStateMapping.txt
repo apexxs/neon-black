@@ -1,0 +1,102 @@
+HI,HI
+hawaii,HI
+WA,WA
+washington,WA
+MT,MT
+montana,MT
+ME,ME
+maine,ME
+ND,ND
+north dakota,ND
+SD,SD
+south dakota,SD
+WY,WY
+wyoming,WY
+WI,WI
+wisconsin,WI
+ID,ID
+idaho,ID
+VT,VT
+vermont,VT
+MN,MN
+minnesota,MN
+OR,OR
+oregon,OR
+NH,NH
+new hampshire,NH
+IA,IA
+iowa,IA
+MA,MA
+massachusetts,MA
+NE,NE
+nebraska,NE
+NY,NY
+new york,NY
+PA,PA
+pennsylvania,PA
+CT,CT
+connecticut,CT
+RI,RI
+rhode island,RI
+NJ,NJ
+new jersey,NJ
+IN,IN
+indiana,IN
+NV,NV
+nevada,NV
+UT,UT
+utah,UT
+CA,CA
+california,CA
+OH,OH
+ohio,OH
+IL,IL
+illinois,IL
+DC,DC
+district of columbia,DC
+DE,DE
+delaware,DE
+WV,WV
+west virginia,WV
+MD,MD
+maryland,MD
+CO,CO
+colorado,CO
+KY,KY
+kentucky,KY
+KS,KS
+kansas,KS
+VA,VA
+virginia,VA
+MO,MO
+missouri,MO
+AZ,AZ
+arizona,AZ
+OK,OK
+oklahoma,OK
+NC,NC
+north carolina,NC
+TN,TN
+tennessee,TN
+TX,TX
+texas,TX
+NM,NM
+new mexico,NM
+AL,AL
+alabama,AL
+MS,MS
+mississippi,MS
+GA,GA
+georgia,GA
+SC,SC
+south carolina,SC
+AR,AR
+arkansas,AR
+LA,LA
+louisiana,LA
+FL,FL
+florida,FL
+MI,MI
+michigan,MI
+AK,AK
+alaska,AK

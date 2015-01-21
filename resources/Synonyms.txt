@@ -1,0 +1,57 @@
+U.S.:United States
+U.S.A.:United States
+USA:United States
+United States of America:United States
+Washington D.C.: Washington DC
+Soviet Union:Union of Soviet Socialist Republics
+Fr.:FR
+Fra.:FR
+GBR:United Kingdom
+UK:United Kingdom
+England:United Kingdom
+N.M.:NM
+N.D.:ND
+Ala.:AL
+Ariz.:AZ
+Ark.:AR
+Calif.:CA
+Colo.:CO
+Conn.:CT
+Del.:DE
+D.C.:DC
+Fla.:FL
+Ga.:GA
+Ill.:IL
+Ind.:IN
+Kans.:KS
+Ky.:KY
+La.:LA
+Md.:MD
+Mass.:MA
+Mich.:MI
+Minn.:MN
+Miss.:MS
+Mo.:MO
+Mont.:MT
+Nebr.:NE
+Neb.:NE
+Nev.:NV
+N.H.:NH
+N.J.:NJ
+N.M.:NM
+N.Mex.:NM
+N.Y.:NY
+N.D.:ND
+N.Dak.:ND
+Oreg.:OR
+Ore.:OR
+Pa.:PA
+R.I.:RI
+S.C.:SC
+Tenn.:TN
+Vt.:VT
+Va.:VA
+Wash.:WA
+Wisc.:WI
+Wis.:WI
+Wyo.:WY

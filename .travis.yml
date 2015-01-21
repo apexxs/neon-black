@@ -1,0 +1,8 @@
+# See http://about.travis-ci.org/docs/user/build-configuration/
+language: java
+notifications:
+  email:
+    recipients:
+      - b.rawlings@apexxs.com
+      - n.buchanan@apexxs.com
+

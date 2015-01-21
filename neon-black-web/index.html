@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Neon Black</title>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!--<script type="text/javascript" language="Javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <script type="text/javascript" language="Javascript" src="jquery-1.11.1.min.js"></script>   
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Load Leaflet from CDN-->
+    <!--
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />    
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    -->
+    <link rel="stylesheet" href="leaflet-0.7.3.css" />
+    <script src="leaflet-0.7.3.js"></script>
+
+    <!-- Load Esri Leaflet from CDN -->   
+    <!--
+        <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/1.0.0-rc.4/esri-leaflet.js"></script>
+    <script type="text/javascript" src="esri-leaflet-1.0.0-rc.4.js"></script>
+    -->
+
+    <!-- Load MapBox from CDN -->
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js'></script>
+
+    <link rel="stylesheet" href="test.css" />
+
+    <!--<script type="text/javascript" language="Javascript" src="test.js" />-->
+    
+    <link href='Leaflet.Coordinates-0.1.4.css' rel='stylesheet' />
+    <script src='Leaflet.Coordinates-0.1.4.min.js'></script>
+
+    <link href='Control.MiniMap.css' rel='stylesheet' />
+    <script src='Control.MiniMap.js'></script>
+
+    <link rel="stylesheet" href="jquery.jsonview.css" />
+    <script type="text/javascript" src="jquery.jsonview.js"></script>
+
+</head>
+<body>
+
+<div id="map"></div>
+    
+<div id="userDiv">
+        <textarea id="textToExtract"></textarea>    
+
+    <div id="toggleDiv">
+        <input type='button' value='Go' id='btnExtract' class='userButton'>
+        <input type='button' value='Clear' id='btnClear' class='userButton'>
+        <div id="json"></div>
+    </div>
+</div>
+
+<script>
+    var neonBlackResults = [];   
+    var resultsLayerGroup = [];
+
+    $(document).ready(function() {
+        // Set button events
+        $("#btnExtract").click(function(){ 
+            $.ajax({
+                url:"http://localhost:9000/extract",
+                type: "POST",
+                data : $('#textToExtract').val(),                
+                success: handleResult,
+                dataType: "json",
+                contentType: "application/json"
+            });    
+        }); 
+
+        $("#btnClear").click(function(){
+            clearResults();           
+        });     
+    });         
+
+    // Intialize JSON tree
+    $("#json").JSONView('[]');
+
+    // // OpenStreetMap basemap (create the tile layer with correct attribution)
+    // var map = new L.Map('map');
+    var OpenStreetMap_Mapnik = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        minZoom: 0, maxZoom: 13
+    });
+    // map.addLayer(OpenStreetMap_Mapnik)
+    //     .setView([0, 0], 2);    
+
+    // MapBox basemap
+    L.mapbox.accessToken = 'pk.eyJ1IjoibmJ1Y2hhbmFuIiwiYSI6IkRFUjdSZVUifQ.HYx4EnrD873SYT3LS_bOPg';
+    var map = L.mapbox.map('map', 'examples.map-i86nkdio'       
+            // , { fullscreenControl: true, fullscreenControlOptions: { position: 'topleft' } }
+        )
+    .setView([0, 0], 2);
+
+    // Mini map
+    var miniMap = new L.Control.MiniMap(OpenStreetMap_Mapnik).addTo(map);
+
+    // // Coordinate display
+    // L.control.coordinates({
+    //     position:"bottomleft", //optional default "bootomright"
+    //     decimals:2, //optional default 4
+    //     decimalSeperator:".", //optional default "."
+    //     labelTemplateLat:"Latitude: {y}", //optional default "Lat: {y}"
+    //     labelTemplateLng:"Longitude: {x}", //optional default "Lng: {x}"
+    //     enableUserInput:false, //optional default true
+    //     useDMS:false, //optional default false
+    //     useLatLngOrder: true //ordering of labels, default false-> lng-lat
+    // }).addTo(map);
+
+    function handleResult(resultData) {
+        neonBlackResults = resultData;
+        loadData();
+    }
+
+    function loadData() {        
+
+        for (var i = 0; i < neonBlackResults.length; i++) {
+
+            var lonLat = neonBlackResults[i].topCandidate.lonLat;
+            if (typeof(lonLat) != undefined && lonLat != null) {
+                var lonLatParts = lonLat.split(' ');
+
+                var popupData = "<i>" + neonBlackResults[i].name + " </i><br/>";
+                popupData += "Population: " + neonBlackResults[i].topCandidate.population + "<br/>";
+                popupData += "Score: " + neonBlackResults[i].topCandidate.score + "<br/>";
+                popupData += "GeoNames Entries: " + neonBlackResults[i].geoNamesEntries.length + "<br/>";
+                
+                var lat = lonLatParts[1];
+                var lon = lonLatParts[0];
+
+                var marker = L.marker([lat, lon]).bindPopup(popupData);
+                resultsLayerGroup.push(marker);
+                map.addLayer(marker);
+            }
+        }
+
+        $(function() {
+          $("#json").JSONView(neonBlackResults);          
+          //$("#json-collasped").JSONView(neonBlackResults, {collapsed: true}); // with options
+        });      
+    }    
+
+    function clearResults() {        
+        $('#textToExtract').val(''); // text input
+
+        $("#json").JSONView('[]'); // clear JSON tree
+
+        map.setView([0, 0], 2); // set inital map view
+
+        // Clear markers (probably much better way to do this)
+        for (i = 0; i < resultsLayerGroup.length; i++) {
+            map.removeLayer(resultsLayerGroup[i]);
+        }  
+    }
+</script>
+
+</body>
+</html>

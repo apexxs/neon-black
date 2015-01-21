@@ -1,0 +1,6 @@
+ province;featureCode:ADM*
+ state;featureCode:ADM*
+ district;featureCode:ADM*
+ village;featureCode:PPL*
+ city;featureCode:PPL*
+ town;  featureCode:PPL*
