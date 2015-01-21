@@ -25,3 +25,7 @@ Build and run the Neon Black API module
 3. `java -jar target/neonblack-api.jar`
 
 Should now be able to GET/POST text to http://localhost:9000/extract?input=
+
+## neon-black-web
+
+[See the web README](./neon-black-web/README.md)
