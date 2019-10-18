@@ -24,7 +24,7 @@
         <opensextant.version>2.0.1</opensextant.version>
         <opensextant.xponents.version>2.7c-SNAPSHOT</opensextant.xponents.version>
         <tika.version>1.5</tika.version>
-        <solr.version>4.9.0</solr.version>
+        <solr.version>8.2.0</solr.version>
     </properties>
 
     <scm>
